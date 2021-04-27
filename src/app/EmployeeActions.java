@@ -1,4 +1,4 @@
-package src;
+package src.app;
 
 import java.time.LocalDate;
 import java.time.LocalTime;
@@ -6,7 +6,6 @@ import java.util.List;
 import java.util.Random;
 import java.util.Scanner;
 
-// import src.Payroll;
 import src.employees.Commissioned;
 import src.employees.Employee;
 import src.employees.Hourly;
@@ -14,6 +13,8 @@ import src.employees.Salaried;
 import src.employees.SaleReport;
 import src.employees.TimeCard;
 import src.employees.UnionMember;
+import src.payment.Payment;
+import src.payment.Payroll;
 
 
 public class EmployeeActions {

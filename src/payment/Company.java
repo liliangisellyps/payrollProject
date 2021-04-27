@@ -1,4 +1,4 @@
-package src;
+package src.payment;
 
 import src.employees.Employee;
 import java.util.List;

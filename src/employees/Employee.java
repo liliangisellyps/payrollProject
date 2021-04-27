@@ -1,6 +1,6 @@
 package src.employees;
 
-import src.Payment;
+import src.payment.Payment;
 
 public class Employee {
     

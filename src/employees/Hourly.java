@@ -3,7 +3,7 @@ package src.employees;
 import java.util.ArrayList;
 import java.util.List;
 
-import src.Payment;
+import src.payment.Payment;
 
 public class Hourly extends Employee {
     private int hourSalary;
