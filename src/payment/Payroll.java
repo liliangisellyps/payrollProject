@@ -25,4 +25,22 @@ public class Payroll {
     public void setSchedule(List<String> sch) {
         this.schedule = sch;
     }
+    public void setSalary(Salary salary) {
+        this.salary = salary;
+    }
+    public Salary getSalary() {
+        return salary;
+    }
+    public void setEmployee(Employee employee) {
+        this.employee = employee;
+    }
+    public Employee getEmployee() {
+        return employee;
+    }
+    public void setCompany(Company company) {
+        this.company = company;
+    }
+    public Company getCompany() {
+        return company;
+    }
 }

@@ -4,23 +4,28 @@ import java.time.LocalDate;
 
 import src.employees.Employee;
 
-public class Comissions extends Salary {
-    public Comissions(Company company, Employee employee, Salary salary, int schedule) {
-        super(company, employee, salary, schedule);
-        //TODO Auto-generated constructor stub
-    }
+public class Commissions extends Salary {
     private Double percentOfSales;
     private LocalDate dateOfSale;
     private Double priceOfSale;
-    private Double comission;
+    private Double commission;
+
+    public Commissions(Company company, Employee employee, Salary salary, int schedule, Double percentOfSales,
+            LocalDate dateOfSale, Double priceOfSale, Double commission) {
+        super(company, employee, salary, schedule);
+        this.percentOfSales = percentOfSales;
+        this.dateOfSale = dateOfSale;
+        this.priceOfSale = priceOfSale;
+        this.commission = commission;
+    }
     public Double getPercentOfSales() {
         return percentOfSales;
     }
-    public Double getComission() {
-        return comission;
+    public Double getCommission() {
+        return commission;
     }
-    public void setComission(Double comission) {
-        this.comission = comission;
+    public void setCommission(Double commission) {
+        this.commission = commission;
     }
     public Double getPriceOfSale() {
         return priceOfSale;

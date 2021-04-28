@@ -13,17 +13,18 @@ public class Employee {
     private String paymentDay;
 
 
-    public Employee(String name, int id, String address, UnionMember unionMember, Payment payment, int employeeType) {
+    public Employee(String name, int id, String address, UnionMember unionMember, Payment payment, int employeeType, String paymentDay) {
         this.name = name;
         this.id = id;
         this.address = address;
         this.unionMember = unionMember;
         this.payment = payment;
         this.employeeType = employeeType;
+        this.paymentDay = paymentDay;
     }
 
     public String employeeInfos(){
-        return "Name: " + this.getName() + "\nID: " + this.getId() + "\nAddress: " + getAddress() + "\nEmployee Type: " + employeeTypeToString() + "\nIs Union Member? " + isUnionMember();
+        return "Name: " + this.getName() + "\nID: " + this.getId() + "\nAddress: " + getAddress() + "\nEmployee Type: " + employeeTypeToString() + "\nPayment Day: " + getPaymentDay() + "\nIs Union Member? " + isUnionMember();
     }
 
     public String employeeTypeToString() {

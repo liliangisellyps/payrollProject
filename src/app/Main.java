@@ -62,10 +62,11 @@ public class Main {
                     else EmployeeActions.changeEmpInfos(input, employeesList);
                     break;
                 case 7: // Pay Employees
-                    if(employeesList.isEmpty()) System.out.println("There's no employee in the system. You can't pay anything.");
-                    else EmployeeActions.payEmployees(input, payroll);
+                    if(employeesList.isEmpty()) System.out.println("There's no employee in the system.");
+                    else EmployeeActions.payEmployees(input, employeesList, payroll);
                     break;
-                case 8:
+                case 8: // undo/redo
+                    System.out.println("That option isn't available at the moment. Try again later.");
                     break;
                 case 9: // Change Payment Day
                     if(employeesList.isEmpty()) System.out.println("There's no employee in the system. You can't change anything.");

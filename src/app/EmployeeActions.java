@@ -2,9 +2,13 @@ package src.app;
 
 import java.time.LocalDate;
 import java.time.LocalTime;
+import java.time.DayOfWeek;
+// import java.time.MonthDay;
+// import java.time.Month;
 import java.util.List;
 import java.util.Random;
 import java.util.Scanner;
+import java.util.ArrayList;
 
 import src.employees.Commissioned;
 import src.employees.Employee;
@@ -73,28 +77,32 @@ public class EmployeeActions {
 
         System.out.println("Finally, what's the type of the Employee? Please enter only the number correspondent.\n1 - Salaried\n2 - Commissioned\n3 - Hourly\n");
         int employeeType = input.nextInt();
+        String paymentDay = " ";
         int salary;
         int id = new Random().nextInt(10000);
         switch(employeeType){
             case 1: // Salaried
                 System.out.println("Enter the Salary of your employee:\n");
                 salary = input.nextInt();
-                employee = new Salaried(name, id, address, unionMember, payment, employeeType, salary);
+                paymentDay = "Monthly - Last day of the month";
+                employee = new Salaried(name, id, address, unionMember, payment, employeeType, paymentDay, salary);
                 break;
             case 2: // Commissioned 
+                paymentDay = "Bi-weekly - Friday";
                 System.out.println("Enter the Salary of your employee:\n");
                 salary = input.nextInt();
                 System.out.println("What's the comission of your employee?\n");
                 int comission = input.nextInt();
-                employee = new Commissioned(name, id, address, unionMember, payment, employeeType, salary, comission);
+                employee = new Commissioned(name, id, address, unionMember, payment, employeeType, paymentDay, salary, comission, null);
                 break;
             case 3: // Hourly
+                paymentDay = "Weekly - Every friday";
                 System.out.println("How much your employee is paid for hour worked?\n");
                 int hourSalary = input.nextInt();
-                employee = new Hourly(name, id, address, unionMember, payment, employeeType, hourSalary);
+                employee = new Hourly(name, id, address, unionMember, payment, employeeType, paymentDay, hourSalary);
                 break;
             default: 
-                employee = new Employee(name, id, address, unionMember, payment, employeeType);
+                employee = new Employee(name, id, address, unionMember, payment, employeeType, paymentDay);
         }
         System.out.println("\nNew employee was successfully registered! Thank you.\n");
         System.out.println(employee.employeeInfos());
@@ -254,7 +262,7 @@ public class EmployeeActions {
                     op = input.nextInt();
                     input.nextLine();
                     if(op == 1){
-                        System.out.println("Enter new type.");
+                        System.out.println("Enter new type. (1 for Salaried, 2 for Commisioned and 3 for Hourly.");
                         employee.setEmployeeType(input.nextInt());
                         System.out.println("This is your employee's new type:");
                         System.out.println(employee.employeeTypeToString());
@@ -267,7 +275,7 @@ public class EmployeeActions {
                     op = input.nextInt();
                     input.nextLine();
                     if(op == 1){
-                        System.out.println("Enter new payment method. (1 for Salaried, 2 for Commisioned and 3 for Hourly.\n");
+                        System.out.println("Enter new payment method. (1 for Mail Check, 2 for Hand Check and 3 for Bank Deposit.\n");
                         int newMet = input.nextInt();
                         employee.getPayment().setPaymentMethod(newMet);
                         System.out.println("This is your employee's new payment method:");
@@ -323,6 +331,56 @@ public class EmployeeActions {
 
         }
     }
+    public static void payEmployees(Scanner input, List<Employee> employeesList, Payroll payroll) {
+        printEmployees(input, employeesList);
+        LocalDate today = LocalDate.now();
+        List<Employee> employeesToPay = new ArrayList<Employee>();
+        int size = employeesList.size();
+        int i;
+
+        if(today.getDayOfMonth() == 27 || today.getDayOfMonth() == 29 || today.getDayOfMonth() == 30 ||today.getDayOfMonth() == 31){
+            // pay salaried
+            System.out.println("Today is " + today.getDayOfMonth() + " of " + today.getMonth() + ". It's time to pay salaried employees.\n");
+            System.out.println("These are the employees that got paid today:\n");
+            for(i = 0; i < size; i++){
+                if(employeesList.get(i).getPaymentDay() == "Monthly - Last day of the month"){
+                    employeesToPay.add(employeesList.get(i));
+                    System.out.println(employeesList.get(i).getName());
+                    System.out.println("\n");
+                }
+            }
+        }
+        else if(today.getDayOfWeek() == DayOfWeek.FRIDAY){
+            // pay hourly
+            System.out.println("Today is " + today.getDayOfWeek() + ". It's time to pay Hourly employees.\n");
+            System.out.println("These are the employees that got paid today:\n");
+            for(i = 0; i < size; i++){
+                if(employeesList.get(i).getPaymentDay() == "Weekly - Every friday"){
+                    employeesToPay.add(employeesList.get(i));
+                    System.out.println(employeesList.get(i).getName());
+                    System.out.println("\n");
+                }
+            }
+            int fridays = 0;
+
+
+
+            if(fridays % 2 == 0){
+                // pay commissioned
+                System.out.println("Today is " + today.getDayOfWeek() + ". It's time to pay commissioned employees.\n");
+                System.out.println("These are the employees that got paid today:\n");
+                for(i = 0; i < size; i++){
+                    if(employeesList.get(i).getPaymentDay() == "Bi-weekly - Friday"){
+                        employeesToPay.add(employeesList.get(i));
+                        System.out.println(employeesList.get(i).getName());
+                        System.out.println("\n");
+                    }
+                }
+            }
+            fridays++;
+        } else System.out.println("The company don't have any employees to pay today.\n");
+    }
+
     public static void printSchedule(List<String> sch) {
         int size = sch.size();
         for(int i=0; i < size; i++){
@@ -371,9 +429,6 @@ public class EmployeeActions {
         System.out.println("\n\nPayment Schedule created successfullly!");
         System.out.println("\n\nNow, you have these options of schedule:");  
         printSchedule(payroll.schedule);
-    }
-
-    public static void payEmployees(Scanner input, Payroll payroll) {
     }
 
 }
