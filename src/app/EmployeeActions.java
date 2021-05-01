@@ -431,4 +431,11 @@ public class EmployeeActions {
         printSchedule(payroll.schedule);
     }
 
+    public static undoRedo(){
+        System.out.println("Press '0' to undo previous action and '1' to redo.");
+        int op = input.nextInt();
+        if(op == 0) System.out.println("Previous action undone.");
+        else if (op == 1) System.out.println("Previous action redone.");
+    }
+
 }

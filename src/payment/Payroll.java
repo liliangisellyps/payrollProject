@@ -6,9 +6,9 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class Payroll {
-    Company company;
-    Employee employee;
-    Salary salary;
+    public Company company;
+    public Employee employee;
+    public Salary salary;
     public List<String> schedule;
     
     public Payroll() {

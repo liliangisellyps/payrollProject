@@ -4,10 +4,10 @@ package src.payment;
 import src.employees.Employee;
 
 public class Salary extends Payroll{
-    Double value;
-    Double normalTaxes;
-    Double extraHours;
-    Commissions comissions;
+    public Double value;
+    public Double normalTaxes;
+    public Double extraHours;
+    public Commissions comissions;
     public Salary(Company company, Employee employee, Salary salary, String schedule, Double value, Double normalTaxes,
             Double extraHours, Commissions comissions) {
         super(company, employee, salary, schedule);

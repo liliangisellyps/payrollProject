@@ -4,6 +4,10 @@ import src.employees.Employee;
 import java.util.List;
 
 public class Company extends Payroll{
+    public String name;
+    private Double number;
+    private String id;
+    private String address;
     public Company(Company company, Employee employee, Salary salary, List<String> schedule) {
         super();
     }
@@ -25,8 +29,4 @@ public class Company extends Payroll{
     public void setNumber(Double number) {
         this.number = number;
     }
-    public String name;
-    private Double number;
-    private String id;
-    private String address;
 }
