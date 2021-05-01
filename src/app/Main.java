@@ -66,7 +66,7 @@ public class Main {
                     else EmployeeActions.payEmployees(input, employeesList, payroll);
                     break;
                 case 8: // undo/redo
-                    System.out.println("That option isn't available at the moment. Try again later.");
+                    EmployeeActions.undoRedo();
                     break;
                 case 9: // Change Payment Day
                     if(employeesList.isEmpty()) System.out.println("There's no employee in the system. You can't change anything.");
